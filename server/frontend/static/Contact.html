@@ -1,0 +1,78 @@
+<html>
+<head>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 0.8in;">
+        <div class="container-fluid">
+          <h2 style="padding-right: 5%;">Dealerships</h2>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " style="font-size: larger;" href="/about">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+    <div class="container">
+      <div class="card shadow p-4 mt-4"  style="border-radius: 30px;">
+        
+        <!-- Top Image Section -->
+        <div class="mb-4 d-flex justify-content-center" style="">
+          <img src="/static/cars.jpg" class="img-fluid " style="width: 58%;height: 264px;" alt="Car Lot Image">
+        </div>
+  
+        <!-- Bottom Contact Section -->
+        <div class="row">
+          
+          <!-- Left Column (Icon) -->
+          <div class="col-md-3 d-flex justify-content-center align-items-center">
+            <i class="bi bi-headset contact-icon"></i>
+          <img src="/static/contact.png" class="img-fluid ms-auto" style="width: 40%;" alt="Car Lot Image">
+
+          </div>
+  
+          <!-- Divider Line -->
+          <div class="col-md-3 d-none d-md-flex justify-content-center">
+            <div style="border-left: 1px solid #ccc; height: 100%;"></div>
+          </div>
+  
+          <!-- Right Column (Contact Info) -->
+          <div class=" col-md-offset-4 col-md-4 contact-info " style="color: #432be2;">
+            
+          <h6>Contact Customer Service</h6>
+          <a href="mailto:support@bestcars.com">support@bestcars.com</a>
+
+          <h6>Contact our National Advertising team</h6>
+          <a href="mailto:NationalSales@bestcars.com">NationalSales@bestcars.com</a>
+
+          <h6>Contact our Public Relations team</h6>
+          <a href="mailto:PR@bestcars.com">PR@bestcars.com</a>
+
+          <h6>Contact the bestcars.com offices</h6>
+          <a href="tel:+13126111111">312-611-1111</a>
+
+          <h6>Become a bestcars.com car dealer</h6>
+          <a href="https://growwithbestcars.com" target="_blank">Visit growwithbestcars.com</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</body>  
+</html>
