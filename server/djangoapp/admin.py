@@ -2,17 +2,19 @@ from django.contrib import admin
 from .models import CarMake, CarModel
 
 
-# CarModelInline class
 class CarModelInline(admin.StackedInline):
+    """Inline configuration for CarModel within CarMake admin."""
     model = CarModel
     extra = 5
 
-# CarModelAdmin class
+
 class CarMakeAdmin(admin.ModelAdmin):
+    """Custom admin for CarMake with inline CarModels."""
     inlines = [CarModelInline]
 
-# CarMakeAdmin class with CarModelInline
+
+# Register CarMake with custom admin
 admin.site.register(CarMake, CarMakeAdmin)
 
-# Register models here
+# Register CarModel with default admin
 admin.site.register(CarModel)
