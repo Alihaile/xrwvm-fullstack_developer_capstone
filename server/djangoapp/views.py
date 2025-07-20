@@ -1,12 +1,12 @@
 import json
 import logging
-from datetime import datetime
+# from datetime import datetime
 
-from django.contrib import messages
+# from django.contrib import messages
 from django.contrib.auth import login, logout as django_logout, authenticate
 from django.contrib.auth.models import User
-from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import JsonResponse #HttpResponse, HttpResponseRedirect
+# from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import CarMake, CarModel
@@ -34,7 +34,6 @@ def get_cars(request):
 
 
 @csrf_exempt
-
 def login_user(request):
     """
     Handle user login using JSON payload.
@@ -47,10 +46,10 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return JsonResponse({"userName": username, 
+            return JsonResponse({"userName": username,
                                  "status": "Authenticated"})
 
-        return JsonResponse({"userName": username, 
+        return JsonResponse({"userName": username,
                              "status": "Unauthorized"}, status=401)
 
     except json.JSONDecodeError:
@@ -66,7 +65,6 @@ def logout(request):
 
 
 @csrf_exempt
-
 def registration(request):
     """
     Register a new user with JSON payload.
@@ -80,7 +78,7 @@ def registration(request):
         email = data.get("email")
 
         if User.objects.filter(username=username).exists():
-            return JsonResponse({"userName": username, 
+            return JsonResponse({"userName": username,
                                  "error": "Already Registered"})
 
         user = User.objects.create_user(
@@ -91,7 +89,7 @@ def registration(request):
             email=email
         )
         login(request, user)
-        return JsonResponse({"userName": username, 
+        return JsonResponse({"userName": username,
                              "status": "Authenticated"})
 
     except json.JSONDecodeError:
@@ -132,12 +130,15 @@ def get_dealer_reviews(request, dealer_id):
     for review in reviews:
         text = review.get('review', '')
         response = analyze_review_sentiments(text)
-        if (response):             
+        if (response):
             review['sentiment'] = response.get('sentiment', 'unknown')
         else:
             review['sentiment'] ='unknown'
 
-    return JsonResponse({"status": 200, "reviews": reviews})
+    return JsonResponse({
+            "status": 200,
+            "reviews": reviews
+         })
 
 
 @csrf_exempt
@@ -153,3 +154,4 @@ def add_review(request):
         logger.error(f"Review post failed: {e}")
         return JsonResponse({"status": 401,
                              "message": "Error in posting review"})
+        
