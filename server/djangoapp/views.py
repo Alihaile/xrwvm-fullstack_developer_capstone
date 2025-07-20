@@ -5,7 +5,7 @@ import logging
 # from django.contrib import messages
 from django.contrib.auth import login, logout as django_logout, authenticate
 from django.contrib.auth.models import User
-from django.http import JsonResponse #HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse   # HttpResponse, HttpResponseRedirect
 # from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 
@@ -133,7 +133,7 @@ def get_dealer_reviews(request, dealer_id):
         if (response):
             review['sentiment'] = response.get('sentiment', 'unknown')
         else:
-            review['sentiment'] ='unknown'
+            review['sentiment'] = 'unknown'
 
     return JsonResponse({
             "status": 200,
@@ -154,4 +154,3 @@ def add_review(request):
         logger.error(f"Review post failed: {e}")
         return JsonResponse({"status": 401,
                              "message": "Error in posting review"})
-        

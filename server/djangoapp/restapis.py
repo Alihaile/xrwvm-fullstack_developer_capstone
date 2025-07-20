@@ -31,7 +31,7 @@ def get_request(endpoint, **kwargs):
 
 def analyze_review_sentiments(text):
     """
-    Send a review text to the sentiment 
+    Send a review text to the sentiment
     analysis service and return the result.
     """
     request_url = f"{sentiment_analyzer_url}analyze/{text}"
