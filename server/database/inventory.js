@@ -1,7 +1,7 @@
-// import { Int32 } from 'mongodb';
-import { Schema as _Schema, model as _model } from 'mongoose';
+// const { Int32 } = require('mongodb');
+const mongoose = require('mongoose');
 
-const Schema = _Schema;
+const Schema = mongoose.Schema;
 
 const cars = new Schema({
 dealer_id: {
@@ -30,4 +30,4 @@ mileage: {
   }
 });
 
-export default _model('cars', cars);
+module.exports = mongoose.model('cars', cars);

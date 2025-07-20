@@ -1,6 +1,6 @@
-import { Schema as _Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const Schema = _Schema;
+const Schema = mongoose.Schema;
 
 const reviews = new Schema({
 	id: {
@@ -41,4 +41,4 @@ const reviews = new Schema({
   },
 });
 
-export default model('reviews', reviews);
+module.exports = mongoose.model('reviews', reviews);
