@@ -1,4 +1,5 @@
 {
-  "esversion": 6,
-  "module": true
+  "esversion": 8,
+  "module": true,
+  "node": true
 }
