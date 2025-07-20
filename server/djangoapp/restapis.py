@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 load_dotenv()
 
 backend_url = os.getenv("backend_url", default="http://localhost:3030")
-sentiment_analyzer_url = os.getenv("sentiment_analyzer_url", 
+sentiment_analyzer_url = os.getenv("sentiment_analyzer_url",
                                    default="http://localhost:5050/")
 
 

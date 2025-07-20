@@ -34,6 +34,7 @@ def get_cars(request):
 
 
 @csrf_exempt
+
 def login_user(request):
     """
     Handle user login using JSON payload.
@@ -65,6 +66,7 @@ def logout(request):
 
 
 @csrf_exempt
+
 def registration(request):
     """
     Register a new user with JSON payload.
@@ -131,7 +133,7 @@ def get_dealer_reviews(request, dealer_id):
         text = review.get('review', '')
         response = analyze_review_sentiments(text)
         if (response):             
-            review['sentiment'] = response.get('sentiment', 'unknown') 
+            review['sentiment'] = response.get('sentiment', 'unknown')
         else:
             review['sentiment'] ='unknown'
 
@@ -149,5 +151,5 @@ def add_review(request):
         return JsonResponse({"status": 200})
     except Exception as e:
         logger.error(f"Review post failed: {e}")
-        return JsonResponse({"status": 401, 
+        return JsonResponse({"status": 401,
                              "message": "Error in posting review"})
