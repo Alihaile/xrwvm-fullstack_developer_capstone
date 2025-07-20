@@ -14,7 +14,7 @@ class CarMake(models.Model):
 
 class CarModel(models.Model):
     """Represents a specific car model linked to a CarMake."""
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
+    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     dealer_id = models.IntegerField(default=0)
 

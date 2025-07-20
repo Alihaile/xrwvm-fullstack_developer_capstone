@@ -46,9 +46,11 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return JsonResponse({"userName": username, "status": "Authenticated"})
+            return JsonResponse({"userName": username, 
+                                 "status": "Authenticated"})
 
-        return JsonResponse({"userName": username, "status": "Unauthorized"}, status=401)
+        return JsonResponse({"userName": username, 
+                             "status": "Unauthorized"}, status=401)
 
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON"}, status=400)
@@ -76,7 +78,8 @@ def registration(request):
         email = data.get("email")
 
         if User.objects.filter(username=username).exists():
-            return JsonResponse({"userName": username, "error": "Already Registered"})
+            return JsonResponse({"userName": username, 
+                                 "error": "Already Registered"})
 
         user = User.objects.create_user(
             username=username,
@@ -86,7 +89,8 @@ def registration(request):
             email=email
         )
         login(request, user)
-        return JsonResponse({"userName": username, "status": "Authenticated"})
+        return JsonResponse({"userName": username, 
+                             "status": "Authenticated"})
 
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON"}, status=400)
@@ -126,7 +130,10 @@ def get_dealer_reviews(request, dealer_id):
     for review in reviews:
         text = review.get('review', '')
         response = analyze_review_sentiments(text)
-        review['sentiment'] = response.get('sentiment', 'unknown') if response else 'unknown'
+        if (response):             
+            review['sentiment'] = response.get('sentiment', 'unknown') 
+        else:
+            review['sentiment'] ='unknown'
 
     return JsonResponse({"status": 200, "reviews": reviews})
 
@@ -142,4 +149,5 @@ def add_review(request):
         return JsonResponse({"status": 200})
     except Exception as e:
         logger.error(f"Review post failed: {e}")
-        return JsonResponse({"status": 401, "message": "Error in posting review"})
+        return JsonResponse({"status": 401, 
+                             "message": "Error in posting review"})

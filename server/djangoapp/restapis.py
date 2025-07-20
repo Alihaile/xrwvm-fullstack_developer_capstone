@@ -6,7 +6,8 @@ from urllib.parse import urlencode
 load_dotenv()
 
 backend_url = os.getenv("backend_url", default="http://localhost:3030")
-sentiment_analyzer_url = os.getenv("sentiment_analyzer_url", default="http://localhost:5050/")
+sentiment_analyzer_url = os.getenv("sentiment_analyzer_url", 
+                                   default="http://localhost:5050/")
 
 
 def get_request(endpoint, **kwargs):
@@ -30,7 +31,8 @@ def get_request(endpoint, **kwargs):
 
 def analyze_review_sentiments(text):
     """
-    Send a review text to the sentiment analysis service and return the result.
+    Send a review text to the sentiment 
+    analysis service and return the result.
     """
     request_url = f"{sentiment_analyzer_url}analyze/{text}"
     try:
