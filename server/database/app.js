@@ -14,9 +14,9 @@ const dealerships_data = JSON.parse(fs.readFileSync("dealerships.json", 'utf8'))
 mongoose.connect("mongodb://mongo_db:27017/",{'dbName':'dealershipsDB'});
 
 
-const Reviews = require('./review').default;
+const Reviews = require('./review');
 
-const Dealerships = require('./dealership').default;
+const Dealerships = require('./dealership');
 
 try {
   Reviews.deleteMany({}).then(()=>{
@@ -62,7 +62,8 @@ app.get('/fetchDealers', async (req, res) => {
         const documents = await Dealerships.find();
         res.json(documents);
     } catch (error) {
-        res.status(500).json({error: 'Error fetching documents'});
+        console.error('Fetch error:', error);
+        res.status(500).json({error: 'Error fetching documents', message: error});
     }
 
 });
@@ -73,6 +74,7 @@ app.get('/fetchDealers/:state', async (req, res) => {
         const documents = await Dealerships.find({state: req.params.state});
         res.json(documents);
     } catch (error) {
+        console.error('Fetch error:', error);
         res.status(500).json({error: 'Error fetching documents'});
     }
     
@@ -84,6 +86,7 @@ app.get('/fetchDealer/:id', async (req, res) => {
         const documents = await Dealerships.find({id: req.params.id});
         res.json(documents);
     } catch (error) {
+        console.error('Fetch error:', error);
         res.status(500).json({error: 'Error fetching documents'});
     }
     
