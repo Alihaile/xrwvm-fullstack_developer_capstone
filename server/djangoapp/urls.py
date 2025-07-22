@@ -23,6 +23,8 @@ urlpatterns = [
     # Reviews and Cars
     path('add_review', views.add_review, name='add_review'),
     path('get_cars', views.get_cars, name='get_cars'),
+    path(route='get_inventory/<int:dealer_id>', 
+        view=views.get_inventory, name='get_inventory'),
 ]
 
 # Serve media files during development
